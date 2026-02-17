@@ -186,23 +186,20 @@ runBtn.addEventListener('click', async () => {
   exportBtn.disabled = true;
   
   try {
-    const results = await runPipeline((progress) => {
+    pipelineResults = await runPipeline((progress) => {
       updateProgress(progress.stage, progress.percent, progress.message);
-      
-      if (progress.stage === 'complete') {
-        renderOverview(results.dataSummary, results.scoutOutput);
-        renderPersonas(results.scoutOutput);
-        renderStrategies(results.compassOutput);
-        renderCampaigns(results.trailheadOutput);
-        renderConfidence(results.evaluatorOutput);
-        updateRevenueCalculator(results.dataSummary);
-        
-        runBtn.disabled = false;
-        exportBtn.disabled = false;
-        switchTab('overview');
-      }
     });
-    pipelineResults = results;
+    
+    renderOverview(pipelineResults.dataSummary, pipelineResults.scoutOutput);
+    renderPersonas(pipelineResults.scoutOutput);
+    renderStrategies(pipelineResults.compassOutput);
+    renderCampaigns(pipelineResults.trailheadOutput);
+    renderConfidence(pipelineResults.evaluatorOutput);
+    updateRevenueCalculator(pipelineResults.dataSummary);
+    
+    runBtn.disabled = false;
+    exportBtn.disabled = false;
+    switchTab('overview');
   } catch (error) {
     handleError(error);
     runBtn.disabled = false;
