@@ -186,10 +186,11 @@ runBtn.addEventListener('click', async () => {
   exportBtn.disabled = true;
   
   try {
-    pipelineResults = await runPipeline((progress) => {
+    const results = await runPipeline((progress) => {
       updateProgress(progress.stage, progress.percent, progress.message);
       
       if (progress.stage === 'complete') {
+        pipelineResults = results;
         renderOverview(pipelineResults.dataSummary, pipelineResults.scoutOutput);
         renderPersonas(pipelineResults.scoutOutput);
         renderStrategies(pipelineResults.compassOutput);
