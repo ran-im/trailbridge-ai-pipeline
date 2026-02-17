@@ -124,7 +124,7 @@
       document.getElementById('save-key-btn').addEventListener('click', function() {
         var key = document.getElementById('api-key-input').value.trim();
         if (!key) {
-          document.getElementById('key-status').textContent = 'Please enter a key';
+          document.getElementById('key-status').textContent = 'Key entered - please press Run Pipeline';
           return;
         }
         sessionStorage.setItem('anthropic_api_key', key);
