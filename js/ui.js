@@ -190,19 +190,19 @@ runBtn.addEventListener('click', async () => {
       updateProgress(progress.stage, progress.percent, progress.message);
       
       if (progress.stage === 'complete') {
-        pipelineResults = results;
-        renderOverview(pipelineResults.dataSummary, pipelineResults.scoutOutput);
-        renderPersonas(pipelineResults.scoutOutput);
-        renderStrategies(pipelineResults.compassOutput);
-        renderCampaigns(pipelineResults.trailheadOutput);
-        renderConfidence(pipelineResults.evaluatorOutput);
-        updateRevenueCalculator(pipelineResults.dataSummary);
+        renderOverview(results.dataSummary, results.scoutOutput);
+        renderPersonas(results.scoutOutput);
+        renderStrategies(results.compassOutput);
+        renderCampaigns(results.trailheadOutput);
+        renderConfidence(results.evaluatorOutput);
+        updateRevenueCalculator(results.dataSummary);
         
         runBtn.disabled = false;
         exportBtn.disabled = false;
         switchTab('overview');
       }
     });
+    pipelineResults = results;
   } catch (error) {
     handleError(error);
     runBtn.disabled = false;
