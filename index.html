@@ -119,6 +119,18 @@
     <div id="tabConfidence" class="tab-content"></div>
     <div class="revenue-calculator"><h3>Recovery Revenue Calculator</h3><div class="slider-container"><div class="slider-label"><span>Recovery Rate</span><span id="recoveryRateValue">25%</span></div><input type="range" class="slider" id="recoverySlider" min="5" max="50" value="25"></div><div class="revenue-result"><div class="revenue-item"><div class="revenue-value" id="currentLoss">€0</div><div class="revenue-label">Current Monthly Loss</div></div><div class="revenue-item"><div class="revenue-value" id="recoveryAmount">€0</div><div class="revenue-label">Recoverable</div></div><div class="revenue-item"><div class="revenue-value" id="annualGain">€0</div><div class="revenue-label">Annual Gain</div></div></div></div>
   </div>
+  <script>
+    document.getElementById('save-key-btn').addEventListener('click', function() {
+      var key = document.getElementById('api-key-input').value.trim();
+      if (!key) {
+        document.getElementById('key-status').textContent = 'Please enter a key';
+        return;
+      }
+      sessionStorage.setItem('anthropic_api_key', key);
+      document.getElementById('key-status').textContent = 'Key saved!';
+      document.getElementById('api-key-input').value = '';
+    });
+  </script>
   <script type="module" src="js/data.js"></script>
   <script type="module" src="js/agents.js"></script>
   <script type="module" src="js/pipeline.js"></script>
